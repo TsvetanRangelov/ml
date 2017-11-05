@@ -1,5 +1,10 @@
 import numpy as np
-data = np.random.uniform(-1, 1,(100,2))
-rand = np.random.uniform(-10, 10)
-lin_data = [np.append(point[0], point[1]+point[0]*rand) for point in data]
-np.savetxt("data.csv", lin_data, header="x0,x1", delimiter=",", comments="", fmt="%.2f")
+def eval(point, line):
+    if(line[0]*point[0]+line[1]*point[1]+line[2]>0.0):
+        return 1.0
+    else:
+        return -1.0
+line = np.random.uniform(-1,1,(3))
+data = np.random.uniform(-1,1,(100,2))
+classified = [np.append(point,eval(point, line)) for point in data]
+np.savetxt("data.csv", classified, fmt="%.2f", delimiter=",", header="x0,x1,y", comments="")

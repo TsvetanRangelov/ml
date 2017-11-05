@@ -7,5 +7,5 @@ columns = data.transpose()
 n=Neuralnet(data)
 
 
-pyplot.scatter(columns[0], columns[1])
+pyplot.scatter(columns[0], columns[1], c=columns[2])
 pyplot.show()
