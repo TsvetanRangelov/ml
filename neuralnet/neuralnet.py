@@ -7,13 +7,11 @@ class Neuralnet(object):
         self.x = np.array(list(map(lambda data: np.append(1,data[:-1]), data)))
         self.y = np.array([x[len(x)-1] for x in data])
         self.perceptrons = [[Perceptron(([len(self.x[0])-1]+layers)[i]+1) for u in range(layers[i])] for i in range(len(layers))]
-        print(self.total_error())
         for i in range(10000):
             index = np.random.randint(len(self.x))
             inputs = self.feed_forward(index)
             deltas = self.backpropagation(inputs, index)
             self.update_weights(inputs, deltas)
-        print(self.total_error())
     def update_weights(self, inputs, deltas):
         for i in range(len(self.layers)):
             for j in range(len(self.perceptrons[i])):
